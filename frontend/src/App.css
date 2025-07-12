@@ -1,0 +1,215 @@
+/* In src/App.css */
+
+/* --- 1. Global Styles & Modern CSS Variables --- */
+:root {
+  --primary-color: #4F46E5;
+  --primary-hover-color: #4338CA;
+  --danger-color: #EF4444;
+  --danger-hover-color: #DC2626;
+  --success-color: #10B981;
+  --success-hover-color: #059669;
+  --warning-color: #F59E0B;
+  --dark-color: #1F2937;
+  --light-color: #ffffff;
+  --background-color: #F3F4F6;
+  --text-color: #374151;
+  --subtle-text-color: #6B7280;
+  --border-color: #E5E7EB;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --border-radius: 0.5rem;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-color);
+}
+
+/* --- 2. Main Layout & Navigation --- */
+.navbar {
+  background-color: rgba(31, 41, 55, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.nav-brand { font-size: 1.5rem; font-weight: bold; color: var(--light-color); }
+.nav-links { display: flex; gap: 1.5rem; }
+.nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 8px 12px; border-radius: var(--border-radius); transition: all 0.2s ease; }
+.nav-links a:hover { color: var(--light-color); background-color: rgba(255, 255, 255, 0.1); }
+.nav-links a.active { color: var(--light-color); font-weight: 600; }
+.content { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+
+/* --- 3. Loading, Empty State & Page Header --- */
+.page-header {
+  color: var(--light-color);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.loader-container, .empty-state {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh; 
+    padding: 3rem;
+    background-color: rgba(31, 41, 55, 0.75);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    max-width: 500px;
+    margin: 5rem auto;
+    color: var(--light-color);
+}
+.spinner { width: 50px; height: 50px; border: 5px solid rgba(255,255,255,0.2); border-top: 5px solid var(--light-color); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 1rem; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.empty-state-icon { font-size: 4rem; margin-bottom: 1rem; }
+
+/* --- 4. Product List Styles (Cards) --- */
+.product-list-container { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+    gap: 30px;
+}
+.product-item {
+  background-color: rgba(31, 41, 55, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease-in-out;
+}
+.product-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+/* --- UPDATED: Taller Image & Compact Details --- */
+.product-card-image-container {
+    width: 100%; 
+    height: 260px; /* Increased height from 220px to 260px */
+    background-color: #3d4653; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    overflow: hidden; 
+    border-top-left-radius: var(--border-radius); 
+    border-top-right-radius: var(--border-radius);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.product-image { width: 100%; height: 100%; object-fit: cover; }
+.no-image-placeholder { font-size: 3rem; color: rgba(255,255,255,0.2); }
+
+.product-header { 
+    padding: 0.75rem 1.25rem; /* Reduced vertical padding */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    gap: 10px; 
+}
+.product-header .info { min-width: 0; flex-grow: 1; }
+.product-header .info h3 { margin: 0; color: var(--light-color); line-height: 1.2; overflow: hidden; text-overflow: ellipsis; }
+.product-header .info p { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin: 4px 0 0 0; overflow: hidden; text-overflow: ellipsis; }
+
+.stock-pill { font-weight: bold; padding: 5px 12px; border-radius: 999px; font-size: 0.8rem; }
+.stock-high { background-color: var(--success-color); color: var(--light-color); }
+.stock-low { background-color: var(--warning-color); color: var(--dark-color); }
+.stock-out { background-color: var(--danger-color); color: var(--light-color); }
+
+.product-body { 
+    padding: 0 1.25rem 1.25rem 1.25rem; /* Reduced padding */
+    flex-grow: 1; 
+}
+.variant-list { list-style-type: none; padding-left: 0; font-size: 0.9rem; }
+.variant-list li {
+    display: grid; 
+    grid-template-columns: 1fr auto; 
+    gap: 1rem; 
+    align-items: center; 
+    padding: 10px 0; /* Reduced vertical padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255,255,255,0.9);
+}
+.variant-list li .variant-info {
+    grid-column: 1 / 2;
+    white-space: nowrap;
+}
+.variant-list li .stock-management-form {
+    grid-column: 2 / 3;
+    justify-self: end;
+}
+.variant-list li:last-child { border-bottom: none; }
+.show-more-btn { background: none; border: none; color: var(--primary-color); font-weight: 500; cursor: pointer; margin-top: 10px; }
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1.25rem; /* Reduced vertical padding */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.action-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.6); font-size: 1.2rem; padding: 5px; border-radius: 50%; transition: all 0.2s ease; }
+.action-btn:hover { background-color: rgba(255, 255, 255, 0.1); color: var(--danger-color); }
+
+
+/* --- 5. Form & Button Styles --- */
+.form-container {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    background-color: rgba(31, 41, 55, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-lg);
+    color: var(--light-color);
+}
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+input[type="text"], input[type="date"], input[type="number"], input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--light-color);
+    transition: all 0.2s ease;
+}
+input:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2); }
+button { padding: 10px 18px; border: none; background-color: var(--primary-color); color: white; border-radius: var(--border-radius); cursor: pointer; font-size: 1rem; font-weight: 500; transition: background-color 0.2s ease; display: inline-flex; align-items: center; gap: 8px; }
+button:hover { background-color: var(--primary-hover-color); }
+.purchase-btn { background-color: var(--success-color); }
+.purchase-btn:hover { background-color: var(--success-hover-color); }
+.sell-btn { background-color: var(--subtle-text-color); }
+.sell-btn:hover { background-color: var(--dark-color); }
+.delete-btn { background-color: var(--danger-color); }
+.delete-btn:hover { background-color: var(--danger-hover-color); }
+
+/* --- 6. Stock & Report Styles --- */
+.stock-management-form { display: flex; align-items: center; gap: 8px; }
+.stock-management-form input { width: 60px; text-align: center; font-size: 0.9rem; padding: 8px; }
+.stock-management-form button { font-size: 0.8rem; padding: 8px 12px; }
+.report-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+.report-table th, .report-table td { border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding: 12px; text-align: left; }
+.report-table thead { color: rgba(255,255,255,0.7); }
+.report-table tbody tr:hover { background-color: rgba(255, 255, 255, 0.05); }
+.deleted-row { background-color: #ff00001a !important; color: var(--subtle-text-color); text-decoration: line-through; }
